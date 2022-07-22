@@ -1,36 +1,46 @@
 import styled from 'styled-components';
+import { InputComponentType } from './Input.types';
 
-export const InputContainer = styled.div`
-    margin-bottom: 3.6rem;
-`
-
-export const InputText = styled.input`
-    position: relative;
-
-    text-align: right;
-    border: none;
-    outline: none;
+export const InputContainer = styled.div<InputComponentType>`
+    width: 100%;
+    padding: .4rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    
+    border-radius: var(--border-radius);
+    border: ${({isZero}) => isZero ? '2px solid #D08375' : ''};
 
     background-color: var(--cyan-grayish-very-light);
-    color: var(--cyan-dark);
-    font-size: 2.5rem;
-    border-radius: var(--border-radius);
 
-    margin-top: 1rem;
-    padding: .2rem 1.2rem;
-    width: 100%;
+    display: flex;
+    align-items: center;
 
-    :focus {
-        border: 2px solid var(--cyan-strong);
-    }
+`
 
-    .inputError {
-        border: 2px solid var(--error);
+export const InputHeader = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+        font-size: 12px;
+        color: #D08375;
     }
 `
 
-export const Icon = styled.img`
-    position: absolute;
-    left: 4.5rem;
-    top: 22rem;
+export const InputClear = styled.input`
+    border: none;
+    outline: none;
+    font-size: 2.5rem;
+
+    color: var(--cyan-dark);
+
+    background-color: transparent;
+    text-align: right;
+    width: 100%;
+    
+    &:focus {
+        border: '2px solid #41B4A5';
+    }
 `

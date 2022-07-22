@@ -1,7 +1,8 @@
 import { Box, ContainerValues } from "./BoxResult.styles";
 import { BoxResultTypes } from "./BoxResult.types";
 
-function BoxResult({ tipAmount, total, resetValues }: BoxResultTypes) {
+function BoxResult({ tipAmount, total, resetValues, isDisabled }: BoxResultTypes) {
+    console.log('isDisabled', isDisabled);
     return (
        <Box>
             <ContainerValues>
@@ -10,7 +11,7 @@ function BoxResult({ tipAmount, total, resetValues }: BoxResultTypes) {
                     <p>/ person</p>
                 </div>
 
-                <h1>${tipAmount ? tipAmount : 0}</h1>
+                <h1>${tipAmount}</h1>
             </ContainerValues>
 
             <ContainerValues>
@@ -19,10 +20,10 @@ function BoxResult({ tipAmount, total, resetValues }: BoxResultTypes) {
                     <p>/ person</p>
                 </div>
 
-                <h1>${total ? total : 0}</h1>
+                <h1>${total}</h1>
             </ContainerValues>
 
-            <button onClick={resetValues}>RESET</button>
+            <button onClick={resetValues} disabled={isDisabled}>RESET</button>
        </Box>
     )
 }

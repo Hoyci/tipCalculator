@@ -22,7 +22,6 @@ export default createGlobalStyle`
         --cyan-grayish-light: hsl(185, 41%, 84%);
         --cyan-grayish-very-light: hsl(189, 41%, 97%);
         --white: hsl(0, 0%, 100%);
-        --errror:hsl(12, 52%, 59%);
         --border-radius: 6px;
     }
 `

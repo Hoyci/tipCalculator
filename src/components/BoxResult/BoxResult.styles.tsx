@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-    width: 32.3rem;
+    width: 100%;
     height: 26rem;
-    margin: 0 2.8rem;
     padding: 4.3rem 2.3rem;
     
     background-color: var(--cyan-dark);
@@ -22,6 +21,13 @@ export const Box = styled.div`
         border-radius: 3px;
 
         font-size: 20px;
+
+        color: var(--cyan-dark);
+
+        &:hover {
+            background-color: var(--cyan-grayish-light);
+            cursor: pointer;
+        }
     }
 `
 

@@ -1,44 +1,39 @@
-import React, { forwardRef } from 'react';
-import DollarIcon from '../../assets/icon-dollar.svg';
-import PersonIcon from '../../assets/icon-person.svg';
-import { LabelTitle } from '../utils';
+import React, { forwardRef, useState } from "react";
 
-import { Icon, InputContainer, InputText } from './Input.styles';
+import { LabelTitle } from "../utils";
+import { InputContainer, InputClear, InputHeader } from "./Input.styles";
 import { InputTypes } from './Input.types';
 
-const Input = forwardRef<HTMLInputElement, InputTypes>(({name, label, dispatcher}, ref) => {
+const Input = forwardRef<HTMLInputElement, InputTypes>(({name, label, dispatcher, isZero, icon}, ref) => {
     let handleDispatcher
-
     if (name === 'bill') {
-        handleDispatcher = (event: React.KeyboardEvent<HTMLInputElement>) => {
-            const value = Number(event.currentTarget.value)
-            dispatcher(prevState => ({...prevState, bill: value}));
+        handleDispatcher = (event:  React.KeyboardEvent<HTMLInputElement>) => {
+            const value = Number(event.currentTarget.value);
+            dispatcher(prevState => ({...prevState, bill: value}))
         }
     }
-    
     if (name === 'numberOfPeople') {
         handleDispatcher = (event: React.KeyboardEvent<HTMLInputElement>) => {
-            const value = Number(event.currentTarget.value)
-            dispatcher(prevState => ({...prevState, numberOfPeople: value}));
+            const value = Number(event.currentTarget.value);
+            dispatcher(prevState => ({...prevState, numberOfPeople: value}))
         }
     }
 
-
     return (
-        <>
-            <LabelTitle htmlFor={name}>{label}</LabelTitle>
-            <InputContainer>
-                {/* <Icon src={name === 'bill' ? DollarIcon : PersonIcon } alt='Input Icon' /> */}
-                <InputText 
-                    ref={ref} 
-                    type="text" 
-                    placeholder="0" 
-                    onChange={handleDispatcher}
-                />
-                {/* Corrigir a posição do icone dentro do input */}
+        <div>
+            {isZero && 
+                <InputHeader>
+                    <LabelTitle htmlFor={name}>{label}</LabelTitle>
+                    <p>Can't be zero</p>
+                </InputHeader>
+            }
+            {!isZero && <LabelTitle htmlFor={name}>{label}</LabelTitle>}
+            <InputContainer isZero={isZero}>
+                <img src={icon} alt="Icon"/>
+                <InputClear ref={ref} type="text" placeholder="0" onChange={handleDispatcher} />
             </InputContainer>
-        </>
+        </div>
     )
-});
+})
 
 export default Input;
