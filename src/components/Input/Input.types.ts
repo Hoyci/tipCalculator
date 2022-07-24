@@ -3,9 +3,9 @@ import React from "react";
 export interface InputTypes {
     name: string; 
     label: string;
-    handleChange:  React.Dispatch<React.SetStateAction<number>>;
+    handleChange:  React.Dispatch<React.SetStateAction<string>>;
     icon: string;
-    value: number;
+    value: string;
     showZeroLabel?: boolean;
 }
 export interface InputComponentType {

@@ -14,7 +14,7 @@ function Input({name, label, handleChange, icon, value, showZeroLabel}: InputTyp
 
             <InputContainer isZero={showZeroLabel && !Boolean(value)}>
                 <img src={icon} alt="Icon"/>
-                <InputClear value={value} type="text" placeholder="0" onChange={(event: React.KeyboardEvent<HTMLInputElement>) => handleChange(+event.target.value)} />
+                <InputClear value={value} type="text" placeholder="0" onChange={(event: React.KeyboardEvent<HTMLInputElement>) => handleChange(event.target.value)} />
             </InputContainer>
         </div>
     )

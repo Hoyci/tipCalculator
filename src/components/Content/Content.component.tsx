@@ -14,48 +14,50 @@ import { Button, InputTip } from '../Tip/Tip.styles';
 import { TipValues } from '../utils';
 
 function Content() {
-    const [bill, setBill] = useState(0);
-    const [tip, setTip] = useState(0);
-    const [customTip, setCustomTip] = useState(0);
-    const [numberOfPeople, setNumberOfPeople] = useState(0);
+    const [bill, setBill] = useState('');
+    const [tip, setTip] = useState('');
+    const [customTip, setCustomTip] = useState('');
+    const [numberOfPeople, setNumberOfPeople] = useState('');
 
     const [tipAmount, setTipAmount] = useState(0);
     const [total, setTotal] = useState(0);
     const [buttonSelected, setButtonSelected] = useState(0);
 
     const buttonDisabled = !bill && !tip && !numberOfPeople
-    console.log(buttonDisabled)
 
     const handleResetValues = () => {
-        setBill(0);
-        setTip(0);
-        setCustomTip(0);
-        setNumberOfPeople(0);
+        setBill('');
+        setTip('');
+        setCustomTip('');
+        setNumberOfPeople('');
         setButtonSelected(0);
     }
 
     const handleButton = (value: number) => {
         setButtonSelected(value);
-        setTip(value);
-        setCustomTip(0);
+        setTip(String(value));
+        setCustomTip('');
     }
 
-    const handleInputTip = (value: number) => {
+    const handleInputTip = (value: string) => {
         setButtonSelected(0);
         setCustomTip(value);
     }
 
     useEffect(() => {
-        if (numberOfPeople === 0) {
+        console.log(bill)
+        if (numberOfPeople === '') {
             setTotal(0);
             setTipAmount(0);
             return ;
         }
 
-        const tipToBeUsed = tip || customTip
+        const billParsed = parseFloat(bill.replace(',', '.').replace(' ', ''))
+        const tipParsed = parseFloat(tip.replace(',', '.').replace(' ', '')) || parseFloat(customTip.replace(',', '.').replace(' ', ''));
+        const numberOfPeopleParsed = parseFloat(numberOfPeople.replace(',', '.').replace(' ', ''));
 
-        const tipValue = (bill * (tipToBeUsed / 100)) / numberOfPeople;
-        const totalValue = (bill / numberOfPeople) + tipValue;
+        const tipValue = (billParsed * (tipParsed / 100)) / numberOfPeopleParsed;
+        const totalValue = (billParsed / numberOfPeopleParsed) + tipValue;
         setTipAmount(Math.round(tipValue * 100) / 100);
         setTotal(Math.round(totalValue * 100) / 100);
 
@@ -74,7 +76,7 @@ function Content() {
                                 <Button key={value} onClick={() => handleButton(value)}  isSelected={buttonSelected === value}>{value}%</Button>
                             )
                         })}
-                        <InputTip value={customTip} type="text" placeholder="CUSTOM" maxLength={3} onChange={(event: React.KeyboardEvent<HTMLInputElement>) => handleInputTip(+event.target.value)} />
+                        <InputTip value={customTip} type="text" placeholder="CUSTOM" onChange={(event: React.KeyboardEvent<HTMLInputElement>) => handleInputTip(event.target.value)} />
                     </div>
                 </TipContainer>
                 <InputIcon  showZeroLabel value={numberOfPeople} icon={PersonIcon} name='numberOfPeople' label='Number of People' handleChange={setNumberOfPeople}/>
