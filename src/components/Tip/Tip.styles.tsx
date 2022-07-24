@@ -11,42 +11,43 @@ export const TipContainer = styled.div`
         justify-content: space-between;
         flex-wrap: wrap;
     }
+`
 
-    .tipContainer button, input { 
-        width: calc(50% - 1rem);
-        height: 4.6rem;
-        margin-top: 1.8rem;
+export const Button = styled.button<any>`
+    width: calc(50% - 1rem);
+    height: 4.6rem;
+    margin-top: 1.8rem;
 
-        border: none;
-        border-radius: var(--border-radius);
+    border: none;
+    border-radius: var(--border-radius);
+
+    font-size: 2.6rem;
+    color: var(--white);
+    background-color: ${({ isSelected }) => isSelected ? 'var(--cyan-strong)' : 'var(--cyan-dark)'};
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--cyan-strong);
     }
+`
 
-    .tipContainer input {
-        font-size: 2rem;
-        color: var(--cyan-dark);
-        background-color: var(--cyan-grayish-very-light);
-        text-align: right;
+export const InputTip = styled.input<any>`
+    width: calc(50% - 1rem);
+    height: 4.6rem;
+    margin-top: 1.8rem;
 
-        outline: none;
-        padding: 1rem;
+    border: none;
+    border-radius: var(--border-radius);
 
-        :focus {
-            border: 2px solid var(--cyan-strong);
-        }
-    }
+    font-size: 2rem;
+    color: var(--cyan-dark);
+    background-color: var(--cyan-grayish-very-light);
+    text-align: right;
 
-    .tipContainer button {
-        font-size: 2.6rem;
-        color: var(--white);
-        background-color: var(--cyan-dark);
+    outline: none;
+    padding: 1rem;
 
-        &:hover {
-            cursor: pointer;
-            background-color: var(--cyan-strong);
-        }
-
-        &.selected {
-            background-color: var(--cyan-strong);
-        }
+    :focus {
+        border: 2px solid var(--cyan-strong);
     }
 `
