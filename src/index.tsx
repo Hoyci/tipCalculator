@@ -15,4 +15,4 @@ root.render(
 // TODO: Change all the useStates (bill, tip,  numberOfPeople) to a unique useState that is a object with this keys - DONE
 // TODO: Fix the bug that when set a custom value and after select a default value, the custom value stay with the number - DONE
 // TODO: Add a red border when the number of people's input is equal to zero - DONE
-// TODO: Fix the icon in input component (I believe the best way is using the same idea from the ant desing input component)
+// TODO: Fix the icon in input component (I believe the best way is using the same idea from the ant desing input component) - DONE

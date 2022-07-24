@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Box = styled.div`
     width: 100%;
@@ -7,28 +7,29 @@ export const Box = styled.div`
     
     background-color: var(--cyan-dark);
     border-radius: 16px;
+`
 
+export const ContentButton = styled.button<any>`
+    margin-top: 2rem;
+    width: 100%;
+    height: 5rem;
 
-    button {
-        margin-top: 2rem;
-        width: 100%;
-        height: 5rem;
+    background-color: ${({disabled}) => disabled ? 'var(--cyan-dark-grayish)' : 'var(--cyan-strong)'};
 
-        background-color: var(--cyan-strong);
+    outline: none;
+    border: none;
+    border-radius: 3px;
 
-        outline: none;
-        border: none;
-        border-radius: 3px;
+    font-size: 20px;
 
-        font-size: 20px;
+    color: var(--cyan-dark);
 
-        color: var(--cyan-dark);
-
+    ${({disabled}) => !disabled && css`     
         &:hover {
             background-color: var(--cyan-grayish-light);
             cursor: pointer;
         }
-    }
+    `}
 `
 
 export const ContainerValues = styled.div`

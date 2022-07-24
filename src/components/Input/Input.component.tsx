@@ -1,39 +1,23 @@
-import React, { forwardRef, useState } from "react";
+import React from "react";
 
 import { LabelTitle } from "../utils";
 import { InputContainer, InputClear, InputHeader } from "./Input.styles";
 import { InputTypes } from './Input.types';
 
-const Input = forwardRef<HTMLInputElement, InputTypes>(({name, label, dispatcher, isZero, icon}, ref) => {
-    let handleDispatcher
-    if (name === 'bill') {
-        handleDispatcher = (event:  React.KeyboardEvent<HTMLInputElement>) => {
-            const value = Number(event.currentTarget.value);
-            dispatcher(prevState => ({...prevState, bill: value}))
-        }
-    }
-    if (name === 'numberOfPeople') {
-        handleDispatcher = (event: React.KeyboardEvent<HTMLInputElement>) => {
-            const value = Number(event.currentTarget.value);
-            dispatcher(prevState => ({...prevState, numberOfPeople: value}))
-        }
-    }
-
+function Input({name, label, handleChange, icon, value, showZeroLabel}: InputTypes) {
     return (
         <div>
-            {isZero && 
-                <InputHeader>
-                    <LabelTitle htmlFor={name}>{label}</LabelTitle>
-                    <p>Can't be zero</p>
-                </InputHeader>
-            }
-            {!isZero && <LabelTitle htmlFor={name}>{label}</LabelTitle>}
-            <InputContainer isZero={isZero}>
+            <InputHeader>
+                <LabelTitle htmlFor={name}>{label}</LabelTitle>
+                {showZeroLabel && !value && <p>Can't be zero</p>}    
+            </InputHeader>
+
+            <InputContainer isZero={showZeroLabel && !Boolean(value)}>
                 <img src={icon} alt="Icon"/>
-                <InputClear ref={ref} type="text" placeholder="0" onChange={handleDispatcher} />
+                <InputClear value={value} type="text" placeholder="0" onChange={(event: React.KeyboardEvent<HTMLInputElement>) => handleChange(+event.target.value)} />
             </InputContainer>
         </div>
     )
-})
+}
 
 export default Input;
