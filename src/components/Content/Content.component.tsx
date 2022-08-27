@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { ContentContainer } from "./Content.styles";
+import { ContentContainer, LeftSide, RightSide } from "./Content.styles";
 import TipContainer from '../Tip'
 import { LabelTitle } from '../utils';
 
@@ -67,20 +67,24 @@ function Content() {
     return (
         <ContentContainer>
             <div className='contentPadding'>
-                <InputIcon icon={DollarIcon} value={bill} name='bill' label='Bill' handleChange={setBill}/>
-                <TipContainer>
-                    <LabelTitle>Select Tip %</LabelTitle>
-                    <div className="tipContainer">
-                        {TipValues.map((value) => {
-                            return (
-                                <Button key={value} onClick={() => handleButton(value)}  isSelected={buttonSelected === value}>{value}%</Button>
-                            )
-                        })}
-                        <InputTip value={customTip} type="text" placeholder="CUSTOM" onChange={(event: React.KeyboardEvent<HTMLInputElement>) => handleInputTip(event.target.value)} />
-                    </div>
-                </TipContainer>
-                <InputIcon  showZeroLabel value={numberOfPeople} icon={PersonIcon} name='numberOfPeople' label='Number of People' handleChange={setNumberOfPeople}/>
-                <BoxResult tipAmount={tipAmount} total={total} resetValues={handleResetValues} isDisabled={buttonDisabled}/>
+                <LeftSide>
+                    <InputIcon icon={DollarIcon} value={bill} name='bill' label='Bill' handleChange={setBill}/>
+                    <TipContainer>
+                        <LabelTitle>Select Tip %</LabelTitle>
+                        <div className="tipContainer">
+                            {TipValues.map((value) => {
+                                return (
+                                    <Button key={value} onClick={() => handleButton(value)}  isSelected={buttonSelected === value}>{value}%</Button>
+                                )
+                            })}
+                            <InputTip value={customTip} type="text" placeholder="CUSTOM" onChange={(event: React.KeyboardEvent<HTMLInputElement>) => handleInputTip(event.target.value)} />
+                        </div>
+                    </TipContainer>
+                    <InputIcon  showZeroLabel value={numberOfPeople} icon={PersonIcon} name='numberOfPeople' label='Number of People' handleChange={setNumberOfPeople}/>
+                </LeftSide>
+                <RightSide>
+                    <BoxResult tipAmount={tipAmount} total={total} resetValues={handleResetValues} isDisabled={buttonDisabled}/>
+                </RightSide>
             </div>
         </ContentContainer>
     );

@@ -7,6 +7,11 @@ export const Box = styled.div`
     
     background-color: var(--cyan-dark);
     border-radius: 16px;
+
+    @media (min-width: 1000px) {
+        margin-left: 20px;
+        height: calc(100% - 3rem);
+    }
 `
 
 export const ContentButton = styled.button<any>`
@@ -30,6 +35,10 @@ export const ContentButton = styled.button<any>`
             cursor: pointer;
         }
     `}
+
+    @media (min-width: 1000px) {
+        margin-top: 20rem;
+    }
 `
 
 export const ContainerValues = styled.div`
